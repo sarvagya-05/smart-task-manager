@@ -1,194 +1,515 @@
-Smart Task Manager with Priority Sorting
+## Smart Task Manager with Priority Sorting
+**Author:** Sarvagya Shrivastava
+**Registration Number:** 24BCE10309
 
-Project for: VITyarthi – Java Programming
-Student Name: YOUR NAME
-Registration Number: YOUR REGISTRATION NUMBER
-Project Title: Smart Task Manager with Priority Sorting
+A structured Java SE console application demonstrating core programming concepts including OOP, modular design, collections, comparators, file I/O, and exception handling.
 
-1. Overview
+---
 
-Managing tasks becomes challenging when deadlines, priorities, and descriptions are scattered across notes, reminders, or memory. Without a structured approach, important tasks are often delayed or forgotten.
+## Table of Contents
 
-This project presents a console-based Smart Task Manager written in Core Java, which allows users to add tasks, define deadlines, assign priorities, and organize their work efficiently.
+- [Project Overview](#project-overview)
+- [Java Platform Overview](#java-platform-overview)
+- [Installation & Setup](#installation--setup)
+- [Architecture & Design](#architecture--design)
+- [Features](#features)
+- [Usage](#usage)
+- [Technical Requirements Mapping](#technical-requirements-mapping)
+- [Build & Run](#build--run)
+- [Acknowledgments](#acknowledgments)
 
-The program stores tasks permanently using file handling and automatically sorts them so that the most important tasks appear at the top. This demonstrates practical usage of Java concepts such as classes, objects, ArrayLists, sorting with comparators, and file I/O.
+---
 
-2. Objectives
+## Project Overview
 
-The key objectives of this project are:
+The **Smart Task Manager** is a console-based Java SE application designed to help users organize and manage tasks efficiently. It allows users to:
 
-To develop a modular Java application using Object-Oriented Programming principles.
+- Create tasks with title, description, due date, and priority
+- Sort tasks automatically based on priority and deadline
+- Mark tasks as completed
+- Delete tasks using unique task IDs
+- Load and save tasks using a simple text file
 
-To organize user tasks by taking inputs such as title, description, due date, and priority.
+This project demonstrates how core Java fundamental concepts can be combined to build a functional system with real-world utility.
 
-To apply Java's sorting mechanisms for arranging tasks based on urgency.
+### Key Features
 
-To use file handling for permanent storage of tasks.
+- Complete OOP-based design
+- Layered architecture (model, logic, storage, UI)
+- Comparator-based sorting
+- Persistent task storage via file I/O
+- Robust input handling and basic validations
+- Clean, menu-driven user interface
 
-To design a simple, menu-driven system that is user-friendly.
+---
 
-To demonstrate practical implementation of course concepts in a real application.
+## Java Platform Overview
 
-3. Problem Statement
+### Evolution of Java (Concise)
 
-When users manage multiple activities simultaneously, it becomes difficult to track deadlines and prioritize tasks manually. Traditional notes or reminders are not systematic and lack automatic organization.
+- 1995: Java 1.0
+- 1998: Java 1.2 – Collections Framework
+- 2004: Java 5 – Enums, Generics, Annotations
+- 2014: Java 8 – Lambdas, Streams, Date/Time API
+- 2017–2023: Continued evolution with modules, text blocks, pattern matching
 
-There is a need for a lightweight task manager that:
+### Java Editions
 
-Collects tasks in a structured manner
+| Edition | Description | Use Cases | Key Features |
+|---------|-------------|-----------|--------------|
+| **Java SE** | Standard Edition | Desktop apps, CLI tools | Core libraries, JVM |
+| **Java EE** | Enterprise Edition | Web apps, enterprise systems | Servlets, JPA, EJB |
+| **Java ME** | Micro Edition | Embedded devices | Lightweight APIs |
 
-Sorts tasks based on priority and deadlines
+### Java Architecture
 
-Provides progress tracking
+```
 
-Saves data permanently
+┌───────────────────────────────────────────┐
 
-Offers simple interaction through a console menu
+│               JDK (Development Kit)        │
 
-This project fulfills these needs by implementing a Smart Task Manager in Java.
+│   ┌─────────────────────────────────────┐  │
 
-4. Working of the Project
+│   │        JRE (Runtime Environment)     │  │
 
-The project follows a menu-driven structure. When executed, the program first loads previously saved tasks from the tasks.txt file. It then displays the following menu:
+│   │   ┌───────────────────────────────┐ │  │
 
-1. Add Task
-2. View Tasks (sorted by priority & deadline)
-3. Mark Task as Completed
-4. Delete Task
-5. Save & Exit
+│   │   │        JVM (Virtual Machine)  │ │  │
 
-How Sorting Works
+│   │   │  - Executes bytecode          │ │  │
 
-Tasks are sorted according to:
+│   │   │  - Memory management          │ │  │
 
-Priority (HIGH → MEDIUM → LOW)
+│   │   └───────────────────────────────┘ │  │
 
-Due date (earlier dates come first)
+│   └─────────────────────────────────────┘  │
 
-Data Persistence
+└───────────────────────────────────────────┘
 
-All tasks are saved in a text file using a custom-storable format. When the program is launched again, this file is read and tasks are reconstructed.
+```
 
-Main Operations
+Flow:
+`.java` → `javac` → `.class` → JVM → execution
 
-Add new tasks
+---
 
-View tasks in sorted order
+## Installation & Setup
 
-Mark tasks as completed
+### Requirements
 
-Remove tasks
+- JDK 8 or higher
+- Windows/macOS/Linux
+- Terminal or VS Code
 
-Save tasks permanently
+### Folder Structure
 
-5. Features
+```
 
-Add tasks with title, description, due date, and priority
-
-Tasks automatically sorted by urgency
-
-Mark completion status
-
-Delete tasks
-
-Permanent storage using text file
-
-Unique IDs for each task
-
-Clean modular code structure using multiple classes
-
-Uses Java Collections Framework
-
-6. Project Structure
 smart-task-manager/
-│
-├─ src/
-│  └─ taskmanager/
-│     ├─ Main.java
-│     ├─ Task.java
-│     ├─ TaskManager.java
-│     └─ TaskStorage.java
-│
-├─ data/
-│  └─ tasks.txt
-│
-├─ screenshots/
-├─ recordings/
-├─ README.md
-└─ .gitignore
 
-7. Technologies and Concepts Used
+├── src/
 
-Core Java
+│   └── taskmanager/
 
-Object-Oriented Programming
+│       ├── Main.java
 
-ArrayList and Collection Framework
+│       ├── Task.java
 
-Comparator for custom sorting
+│       ├── TaskManager.java
 
-File Handling (BufferedReader, BufferedWriter)
+│       └── TaskStorage.java
 
-Scanner for user input
+├── data/
 
-Modular design
+│   └── tasks.txt
 
-8. How to Run
-Step 1: Compile
-javac -d bin src/taskmanager/*.java
+├── README.md
 
-Step 2: Execute
+└── .gitignore
+
+```
+
+---
+
+## Architecture & Design
+
+### Package Structure
+
+```
+
+taskmanager/
+
+├── Main.java            # Main application class
+
+├── Task.java            # Task model
+
+├── TaskManager.java     # Core business logic
+
+└── TaskStorage.java     # File I/O operations
+
+```
+
+### OOP Principles Applied
+
+1. **Encapsulation** – Private fields with controlled access
+2. **Abstraction** – Each layer handles a specific responsibility
+3. **Modularity** – Clear separation of logic, UI, storage, and model
+4. **Comparator-based Polymorphism** – Custom sorting logic
+
+### Design Layers
+
+- **Model Layer:** Task.java
+- **Logic Layer:** TaskManager.java
+- **Persistence Layer:** TaskStorage.java
+- **Presentation Layer:** Main.java
+
+---
+
+## Features
+
+### Task Management
+
+- Add new tasks
+- View tasks sorted by priority and due date
+- Mark tasks as completed
+- Delete tasks
+- Assign unique task IDs
+
+### Sorting Mechanism
+
+- Priority order: **HIGH → MEDIUM → LOW**
+- Earlier due dates appear first within the same priority
+
+### File Storage
+
+- Tasks are saved to `data/tasks.txt`
+- Tasks automatically load on program startup
+
+### CLI Interface
+
+- Clean, text-based menu
+- Simple keyboard-driven operations
+
+---
+
+## Usage
+
+### Running the Application
+
+After compilation, run:
+
+```bash
+
 java -cp bin taskmanager.Main
 
-9. Sample Output
-==== SMART TASK MANAGER ====
-1. Add Task
-2. View Tasks (sorted by priority & deadline)
-3. Mark Task as Completed
-4. Delete Task
-5. Save & Exit
-Enter choice:
+```
 
+The main menu includes:
 
-Example task display:
+- Add Task
+- View Tasks
+- Mark Completed
+- Delete Task
+- Save & Exit
 
-[ID: 2] Finish Java Project (Priority: HIGH, Due: 2025-11-26, Status: PENDING)
-    Complete the Smart Task Manager implementation.
+Each operation is initiated through numeric menu selection.
 
-10. Screenshots
+---
 
-Screenshots demonstrating the working of the project are available in the screenshots/ folder:
+## Technical Requirements Mapping
 
-Main menu
+| Requirement | Implementation | Location |
+|------------|----------------|----------|
+| Encapsulation | Private task fields | Task.java |
+| Abstraction | Separation of UI, logic, storage | All classes |
+| Collections | ArrayList for storing tasks | TaskManager.java |
+| Comparator Sorting | Custom priority/date sorting | TaskManager.java |
+| File Handling | Save/Load tasks | TaskStorage.java |
+| Exception Handling | Try/catch for file I/O | TaskStorage.java |
+| Enums | Priority levels | Task.java |
+| CLI Menu | Console-based interface | Main.java |
 
-Adding a task
+---
 
-Viewing sorted tasks
+## Build & Run
 
-Marking a task completed
+### Compilation
 
-Deleting a task
+```bash
 
-Saved tasks.txt file
+javac -d bin src/taskmanager/\*.java
 
-11. Student and Submission Details
+```
 
-Project: Smart Task Manager with Priority Sorting
+### Execution
 
-Student Name: Your Name
+```bash
 
-Registration Number: Your Registration Number
+java -cp bin taskmanager.Main
 
-University: VIT Bhopal University
+```
 
-Course: Java Programming
+---
 
-Submitted Through: VITyarthi
+## Acknowledgments
 
-Faculty: Optional
+This project demonstrates how Java SE concepts can be applied to construct a functional, real-world console application. Its modular structure, sorting mechanisms, and persistent storage approach reflect standard Java programming practices.
 
-12. Conclusion
+ Smart Task Manager with Priority Sorting
+**Author:** YOUR NAME
+**Registration Number:** YOUR REGISTRATION NUMBER
 
-The Smart Task Manager demonstrates how object-oriented programming and Java’s collection framework can be applied to solve a real-world organizational problem. By implementing sorting, encapsulation, modular design, and file storage, the project provides a functional, easy-to-use system for managing tasks.
+A structured Java SE console application demonstrating core programming concepts including OOP, modular design, collections, comparators, file I/O, and exception handling.
 
-The program fulfills all defined objectives and can be enhanced further by adding features such as reminders, color coding, or a graphical user interface.
+---
+
+## Table of Contents
+
+- [Project Overview](#project-overview)
+- [Java Platform Overview](#java-platform-overview)
+- [Installation & Setup](#installation--setup)
+- [Architecture & Design](#architecture--design)
+- [Features](#features)
+- [Usage](#usage)
+- [Technical Requirements Mapping](#technical-requirements-mapping)
+- [Build & Run](#build--run)
+- [Acknowledgments](#acknowledgments)
+
+---
+
+## Project Overview
+
+The **Smart Task Manager** is a console-based Java SE application designed to help users organize and manage tasks efficiently. It allows users to:
+
+- Create tasks with title, description, due date, and priority
+- Sort tasks automatically based on priority and deadline
+- Mark tasks as completed
+- Delete tasks using unique task IDs
+- Load and save tasks using a simple text file
+
+This project demonstrates how core Java fundamental concepts can be combined to build a functional system with real-world utility.
+
+### Key Features
+
+- Complete OOP-based design
+- Layered architecture (model, logic, storage, UI)
+- Comparator-based sorting
+- Persistent task storage via file I/O
+- Robust input handling and basic validations
+- Clean, menu-driven user interface
+
+---
+
+## Java Platform Overview
+
+### Evolution of Java (Concise)
+
+- 1995: Java 1.0
+- 1998: Java 1.2 – Collections Framework
+- 2004: Java 5 – Enums, Generics, Annotations
+- 2014: Java 8 – Lambdas, Streams, Date/Time API
+- 2017–2023: Continued evolution with modules, text blocks, pattern matching
+
+### Java Editions
+
+| Edition | Description | Use Cases | Key Features |
+|---------|-------------|-----------|--------------|
+| **Java SE** | Standard Edition | Desktop apps, CLI tools | Core libraries, JVM |
+| **Java EE** | Enterprise Edition | Web apps, enterprise systems | Servlets, JPA, EJB |
+| **Java ME** | Micro Edition | Embedded devices | Lightweight APIs |
+
+### Java Architecture
+
+```
+
+┌───────────────────────────────────────────┐
+
+│               JDK (Development Kit)        │
+
+│   ┌─────────────────────────────────────┐  │
+
+│   │        JRE (Runtime Environment)     │  │
+
+│   │   ┌───────────────────────────────┐ │  │
+
+│   │   │        JVM (Virtual Machine)  │ │  │
+
+│   │   │  - Executes bytecode          │ │  │
+
+│   │   │  - Memory management          │ │  │
+
+│   │   └───────────────────────────────┘ │  │
+
+│   └─────────────────────────────────────┘  │
+
+└───────────────────────────────────────────┘
+
+```
+
+Flow:
+`.java` → `javac` → `.class` → JVM → execution
+
+---
+
+## Installation & Setup
+
+### Requirements
+
+- JDK 8 or higher
+- Windows/macOS/Linux
+- Terminal or VS Code
+
+### Folder Structure
+
+```
+
+smart-task-manager/
+
+├── src/
+
+│   └── taskmanager/
+
+│       ├── Main.java
+
+│       ├── Task.java
+
+│       ├── TaskManager.java
+
+│       └── TaskStorage.java
+
+├── data/
+
+│   └── tasks.txt
+
+├── README.md
+
+└── .gitignore
+
+```
+
+---
+
+## Architecture & Design
+
+### Package Structure
+
+```
+
+taskmanager/
+
+├── Main.java            # Main application class
+
+├── Task.java            # Task model
+
+├── TaskManager.java     # Core business logic
+
+└── TaskStorage.java     # File I/O operations
+
+```
+
+### OOP Principles Applied
+
+1. **Encapsulation** – Private fields with controlled access
+2. **Abstraction** – Each layer handles a specific responsibility
+3. **Modularity** – Clear separation of logic, UI, storage, and model
+4. **Comparator-based Polymorphism** – Custom sorting logic
+
+### Design Layers
+
+- **Model Layer:** Task.java
+- **Logic Layer:** TaskManager.java
+- **Persistence Layer:** TaskStorage.java
+- **Presentation Layer:** Main.java
+
+---
+
+## Features
+
+### Task Management
+
+- Add new tasks
+- View tasks sorted by priority and due date
+- Mark tasks as completed
+- Delete tasks
+- Assign unique task IDs
+
+### Sorting Mechanism
+
+- Priority order: **HIGH → MEDIUM → LOW**
+- Earlier due dates appear first within the same priority
+
+### File Storage
+
+- Tasks are saved to `data/tasks.txt`
+- Tasks automatically load on program startup
+
+### CLI Interface
+
+- Clean, text-based menu
+- Simple keyboard-driven operations
+
+---
+
+## Usage
+
+### Running the Application
+
+After compilation, run:
+
+```bash
+
+java -cp bin taskmanager.Main
+
+```
+
+The main menu includes:
+
+- Add Task
+- View Tasks
+- Mark Completed
+- Delete Task
+- Save & Exit
+
+Each operation is initiated through numeric menu selection.
+
+---
+
+## Technical Requirements Mapping
+
+| Requirement | Implementation | Location |
+|------------|----------------|----------|
+| Encapsulation | Private task fields | Task.java |
+| Abstraction | Separation of UI, logic, storage | All classes |
+| Collections | ArrayList for storing tasks | TaskManager.java |
+| Comparator Sorting | Custom priority/date sorting | TaskManager.java |
+| File Handling | Save/Load tasks | TaskStorage.java |
+| Exception Handling | Try/catch for file I/O | TaskStorage.java |
+| Enums | Priority levels | Task.java |
+| CLI Menu | Console-based interface | Main.java |
+
+---
+
+## Build & Run
+
+### Compilation
+
+```bash
+
+javac -d bin src/taskmanager/\*.java
+
+```
+
+### Execution
+
+```bash
+
+java -cp bin taskmanager.Main
+
+```
+
+---
+
+## Acknowledgments
+
+This project demonstrates how Java SE concepts can be applied to construct a functional, real-world console application. Its modular structure, sorting mechanisms, and persistent storage approach reflect standard Java programming practices.
