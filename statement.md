@@ -1,5 +1,4 @@
 # Smart Task Manager with Priority Sorting  
-## statement.md
 
 ## Problem Statement  
 Managing tasks effectively is a common challenge for students, professionals, and anyone handling multiple responsibilities. People often rely on memory, scattered notes, or phone reminders, which quickly become unorganized and unreliable. Without a structured system, users fail to prioritize important tasks or keep track of deadlines, leading to delays and reduced productivity.  
@@ -24,4 +23,5 @@ The application requires no special technical knowledge and can be used by begin
 - Loading existing tasks at startup and saving them at exit  
 - Simple menu-driven console interface for easy navigation  
 - Lightweight text-file storage requiring no external database  
+
 
